@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item>
         <rotate
             android:fromDegrees="45"
@@ -8,7 +9,7 @@
             android:pivotY="62%" >
             <shape
                 android:shape="rectangle" >
-                <stroke android:color="@color/black" android:width="10dp"/>
+                <stroke app:backgroundTint="@null" android:width="10dp"/>
                 <solid
                     android:color="@color/white" />
             </shape>
