@@ -56,33 +56,47 @@ class MainActivity : AppCompatActivity() {
         val botonDerecha: Button = findViewById(R.id.botonDerecha)
 
         val textoRondas: TextView = findViewById(R.id.textNRondas)
+        val PatronAResolver = Array(4) { "" }
 
         fun hiloJuego() {
             val thread = Thread(Runnable {
                 for (i in 1..1) {
+                    var posicionPatron = 0
                     textoRondas.text= i.toString()
                     for (e in 1..4) {
                         val shuffled = (1..4).shuffled().last()
 
                         fun funcion1() {
+                            PatronAResolver.set(posicionPatron, "Numero1")
                             botonSuperior.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
                             Thread.sleep(1000)
                             botonSuperior.background.setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.SRC_ATOP)
+                            posicionPatron++
+                            Thread.sleep(500)
                         }
                         fun funcion2() {
+                            PatronAResolver.set(posicionPatron, "Numero2")
                             botonInferior.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
                             Thread.sleep(1000)
                             botonInferior.background.setColorFilter(Color.parseColor("#800080"), PorterDuff.Mode.SRC_ATOP)
+                            posicionPatron++
+                            Thread.sleep(500)
                         }
                         fun funcion3(){
+                            PatronAResolver.set(posicionPatron, "Numero3")
                             botonDerecha.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
                             Thread.sleep(1000)
                             botonDerecha.background.setColorFilter(Color.parseColor("#008000"), PorterDuff.Mode.SRC_ATOP)
+                            posicionPatron++
+                            Thread.sleep(500)
                         }
                         fun funcion4(){
+                            PatronAResolver.set(posicionPatron, "Numero4")
                             botonIzquierda.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
                             Thread.sleep(1000)
                             botonIzquierda.background.setColorFilter(Color.parseColor("#0000FF"), PorterDuff.Mode.SRC_ATOP)
+                            posicionPatron++
+                            Thread.sleep(500)
                         }
 
                         fun iniciarAleatorio() = when (shuffled) {
@@ -93,6 +107,11 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         iniciarAleatorio()
+                        println(PatronAResolver[0])
+                        println(PatronAResolver[1])
+                        println(PatronAResolver[2])
+                        println(PatronAResolver[3])
+                        posicionPatron = 0
                     }
                 }
 
