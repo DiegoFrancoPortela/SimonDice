@@ -71,7 +71,8 @@
         android:rotation="180"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
         android:id="@+id/botonIzquierda"
@@ -83,7 +84,8 @@
         android:rotation="90"
         app:layout_constraintBottom_toTopOf="@+id/botonInferior"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/botonSuperior" />
+        app:layout_constraintTop_toBottomOf="@+id/botonSuperior"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
         android:id="@+id/botonDerecha"
@@ -95,7 +97,8 @@
         android:rotation="270"
         app:layout_constraintBottom_toTopOf="@+id/botonInferior"
         app:layout_constraintStart_toEndOf="@+id/botonIzquierda"
-        app:layout_constraintTop_toBottomOf="@+id/botonSuperior" />
+        app:layout_constraintTop_toBottomOf="@+id/botonSuperior"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
         android:id="@+id/botonInferior"
@@ -107,7 +110,8 @@
         app:layout_constraintEnd_toEndOf="@+id/botonSuperior"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/botonSuperior"
-        app:layout_constraintTop_toBottomOf="@+id/botonSuperior" />
+        app:layout_constraintTop_toBottomOf="@+id/botonSuperior"
+        style="?android:attr/borderlessButtonStyle" />
 
     <Button
         android:id="@+id/botonJugar"
