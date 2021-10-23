@@ -16,8 +16,6 @@
         android:rotation="0"
         android:src="@drawable/boton_play"
         android:scaleType="fitCenter"
-        android:textAlignment="center"
-        android:textSize="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -19,27 +20,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val botonSuperior: Button = findViewById(R.id.botonSuperior)
+        val botonSuperior: Button = findViewById(R.id.botonRojo)
         botonSuperior.setOnClickListener() {
-            Toast.makeText(applicationContext, "Superior", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Rojo", Toast.LENGTH_SHORT).show()
         }
 
-        val botonIzquierda: Button = findViewById(R.id.botonIzquierda)
+        val botonIzquierda: Button = findViewById(R.id.botonAzul)
         botonIzquierda.setOnClickListener() {
-            Toast.makeText(applicationContext, "Izquierda", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Azul", Toast.LENGTH_SHORT).show()
         }
 
-        val botonDerecha: Button = findViewById(R.id.botonDerecha)
-        botonDerecha.setOnClickListener() {
-            Toast.makeText(applicationContext, "Derecha", Toast.LENGTH_SHORT).show()
+        val botonAmarillo: Button = findViewById(R.id.botonAmarillo)
+        botonAmarillo.setOnClickListener() {
+            Toast.makeText(applicationContext, "Amarillo", Toast.LENGTH_SHORT).show()
         }
 
-        val botonInferior: Button = findViewById(R.id.botonInferior)
-        botonInferior.setOnClickListener() {
-            Toast.makeText(applicationContext, "Inferior", Toast.LENGTH_SHORT).show()
+        val botonVerde: Button = findViewById(R.id.botonVerde)
+        botonVerde.setOnClickListener() {
+            Toast.makeText(applicationContext, "Verde", Toast.LENGTH_SHORT).show()
         }
 
-        val botonJugar: Button = findViewById(R.id.botonJugar)
+        val botonJugar: ImageButton = findViewById(R.id.botonJugar)
         botonJugar.setVisibility(View.VISIBLE)
         botonJugar.setOnClickListener() {
 
@@ -49,11 +50,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun empezarJuego() {
-        val botonJugar: Button = findViewById(R.id.botonJugar)
-        val botonSuperior: Button = findViewById(R.id.botonSuperior)
-        val botonInferior: Button = findViewById(R.id.botonInferior)
-        val botonIzquierda: Button = findViewById(R.id.botonIzquierda)
-        val botonDerecha: Button = findViewById(R.id.botonDerecha)
+        val botonJugar: ImageButton = findViewById(R.id.botonJugar)
+        val botonRojo: Button = findViewById(R.id.botonRojo)
+        val botonVerde: Button = findViewById(R.id.botonVerde)
+        val botonAzul: Button = findViewById(R.id.botonAzul)
+        val botonAmarillo: Button = findViewById(R.id.botonAmarillo)
 
         val textoRondas: TextView = findViewById(R.id.textNRondas)
         val PatronAResolver = Array(4) { "" }
@@ -67,34 +68,34 @@ class MainActivity : AppCompatActivity() {
                         val shuffled = (1..4).shuffled().last()
 
                         fun funcion1() {
-                            PatronAResolver.set(posicionPatron, "Numero1")
-                            botonSuperior.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
+                            PatronAResolver.set(posicionPatron, "Rojo")
+                            botonRojo.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
                             Thread.sleep(1000)
-                            botonSuperior.background.setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.SRC_ATOP)
+                            botonRojo.background.setColorFilter(Color.parseColor("#ff0000"), PorterDuff.Mode.SRC_ATOP)
                             posicionPatron++
                             Thread.sleep(500)
                         }
                         fun funcion2() {
-                            PatronAResolver.set(posicionPatron, "Numero2")
-                            botonInferior.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
+                            PatronAResolver.set(posicionPatron, "Verde")
+                            botonVerde.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
                             Thread.sleep(1000)
-                            botonInferior.background.setColorFilter(Color.parseColor("#800080"), PorterDuff.Mode.SRC_ATOP)
+                            botonVerde.background.setColorFilter(Color.parseColor("#800080"), PorterDuff.Mode.SRC_ATOP)
                             posicionPatron++
                             Thread.sleep(500)
                         }
                         fun funcion3(){
-                            PatronAResolver.set(posicionPatron, "Numero3")
-                            botonDerecha.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
+                            PatronAResolver.set(posicionPatron, "Amarillo")
+                            botonAmarillo.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
                             Thread.sleep(1000)
-                            botonDerecha.background.setColorFilter(Color.parseColor("#008000"), PorterDuff.Mode.SRC_ATOP)
+                            botonAmarillo.background.setColorFilter(Color.parseColor("#008000"), PorterDuff.Mode.SRC_ATOP)
                             posicionPatron++
                             Thread.sleep(500)
                         }
                         fun funcion4(){
-                            PatronAResolver.set(posicionPatron, "Numero4")
-                            botonIzquierda.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
+                            PatronAResolver.set(posicionPatron, "Azul")
+                            botonAzul.background.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
                             Thread.sleep(1000)
-                            botonIzquierda.background.setColorFilter(Color.parseColor("#0000FF"), PorterDuff.Mode.SRC_ATOP)
+                            botonAzul.background.setColorFilter(Color.parseColor("#0000FF"), PorterDuff.Mode.SRC_ATOP)
                             posicionPatron++
                             Thread.sleep(500)
                         }
