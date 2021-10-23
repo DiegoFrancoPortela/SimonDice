@@ -118,35 +118,37 @@
 
     <Button
         android:id="@+id/botonRojo"
-        app:backgroundTint="@color/red"
         android:layout_width="157dp"
         android:layout_height="320dp"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="45dp" />
+        app:backgroundTint="@color/red"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
     <Button
         android:id="@+id/botonVerde"
-        app:backgroundTint="@color/green"
         android:layout_width="157dp"
         android:layout_height="320dp"
-        tools:layout_editor_absoluteX="210dp"
-        tools:layout_editor_absoluteY="45dp" />
+        android:layout_marginStart="8dp"
+        app:backgroundTint="@color/green"
+        app:layout_constraintStart_toEndOf="@+id/botonRojo"
+        app:layout_constraintTop_toTopOf="@+id/botonRojo" />
 
     <Button
         android:id="@+id/botonAzul"
-        app:backgroundTint="@color/blue"
         android:layout_width="157dp"
         android:layout_height="320dp"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="366dp" />
+        app:backgroundTint="@color/blue"
+        app:layout_constraintStart_toStartOf="@+id/botonRojo"
+        app:layout_constraintTop_toBottomOf="@+id/botonVerde" />
 
     <Button
         android:id="@+id/botonAmarillo"
-        app:backgroundTint="@color/yellow"
         android:layout_width="157dp"
         android:layout_height="320dp"
+        android:layout_marginStart="8dp"
         android:rotationY="360"
-        tools:layout_editor_absoluteX="210dp"
-        tools:layout_editor_absoluteY="365dp" />
+        app:backgroundTint="@color/yellow"
+        app:layout_constraintStart_toEndOf="@+id/botonAzul"
+        app:layout_constraintTop_toBottomOf="@+id/botonVerde" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
