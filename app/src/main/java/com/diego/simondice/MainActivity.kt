@@ -13,6 +13,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.os.HandlerCompat.postDelayed
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
@@ -58,66 +62,64 @@ class MainActivity : AppCompatActivity() {
         val textoRondas: TextView = findViewById(R.id.textNRondas)
         val PatronAResolver = Array(4) { "" }
 
-        fun hiloJuego() {
-            val thread = Thread(Runnable {
-                for (i in 1..1) {
-                    var posicionPatron = 0
-                    textoRondas.text= i.toString()
-                    for (e in 1..4) {
-                        val shuffled = (1..4).shuffled().last()
+        CoroutineScope(Dispatchers.Default).launch {
+            for (i in 1..1) {
+                var posicionPatron = 0
+                textoRondas.text = i.toString()
+                for (e in 1..4) {
+                    val shuffled = (1..4).shuffled().last()
 
-                        fun funcion1() {
-                            PatronAResolver.set(posicionPatron, "Rojo")
-                            botonRojo.setBackgroundColor(Color.parseColor("#8e1111"))
-                            Thread.sleep(1000)
-                            botonRojo.setBackgroundColor(Color.parseColor("#ed1d1d"))
-                            posicionPatron++
-                            Thread.sleep(500)
-                        }
-                        fun funcion2() {
-                            PatronAResolver.set(posicionPatron, "Verde")
-                            botonVerde.setBackgroundColor(Color.parseColor("#1a691c"))
-                            Thread.sleep(1000)
-                            botonVerde.setBackgroundColor(Color.parseColor("#2caf2f"))
-                            posicionPatron++
-                            Thread.sleep(500)
-                        }
-                        fun funcion3(){
-                            PatronAResolver.set(posicionPatron, "Amarillo")
-                            botonAmarillo.setBackgroundColor(Color.parseColor("#89890b"))
-                            Thread.sleep(1000)
-                            botonAmarillo.setBackgroundColor(Color.parseColor("#e5e513"))
-                            posicionPatron++
-                            Thread.sleep(500)
-                        }
-                        fun funcion4(){
-                            PatronAResolver.set(posicionPatron, "Azul")
-                            botonAzul.setBackgroundColor(Color.parseColor("#0b4a8a"))
-                            Thread.sleep(1000)
-                            botonAzul.setBackgroundColor(Color.parseColor("#137ce7"))
-                            posicionPatron++
-                            Thread.sleep(500)
-                        }
-
-                        fun iniciarAleatorio() = when (shuffled) {
-                            1 -> funcion1()
-                            2 -> funcion2()
-                            3 -> funcion3()
-                            else -> funcion4()
-                        }
-
-                        iniciarAleatorio()
-                        println(PatronAResolver[0])
-                        println(PatronAResolver[1])
-                        println(PatronAResolver[2])
-                        println(PatronAResolver[3])
-                        posicionPatron = 0
+                     suspend fun funcion1() {
+                        PatronAResolver.set(posicionPatron, "Rojo")
+                        botonRojo.setBackgroundColor(Color.parseColor("#8e1111"))
+                        delay(1000)
+                        botonRojo.setBackgroundColor(Color.parseColor("#ed1d1d"))
+                        posicionPatron++
+                        delay(500)
                     }
-                }
 
-            })
-            thread.start()
+                    suspend fun funcion2() {
+                        PatronAResolver.set(posicionPatron, "Verde")
+                        botonVerde.setBackgroundColor(Color.parseColor("#1a691c"))
+                        delay(1000)
+                        botonVerde.setBackgroundColor(Color.parseColor("#2caf2f"))
+                        posicionPatron++
+                        delay(500)
+                    }
+
+                    suspend fun funcion3() {
+                        PatronAResolver.set(posicionPatron, "Amarillo")
+                        botonAmarillo.setBackgroundColor(Color.parseColor("#89890b"))
+                        delay(1000)
+                        botonAmarillo.setBackgroundColor(Color.parseColor("#e5e513"))
+                        posicionPatron++
+                        delay(500)
+                    }
+
+                    suspend fun funcion4() {
+                        PatronAResolver.set(posicionPatron, "Azul")
+                        botonAzul.setBackgroundColor(Color.parseColor("#0b4a8a"))
+                        delay(1000)
+                        botonAzul.setBackgroundColor(Color.parseColor("#137ce7"))
+                        posicionPatron++
+                        delay(500)
+                    }
+
+                    suspend fun iniciarAleatorio() = when (shuffled) {
+                        1 -> funcion1()
+                        2 -> funcion2()
+                        3 -> funcion3()
+                        else -> funcion4()
+                    }
+
+                    iniciarAleatorio()
+                    println(PatronAResolver[0])
+                    println(PatronAResolver[1])
+                    println(PatronAResolver[2])
+                    println(PatronAResolver[3])
+                    posicionPatron = 0
+                }
+            }
         }
-        hiloJuego()
     }
 }
