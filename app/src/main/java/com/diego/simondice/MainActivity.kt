@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val botonSuperior: Button = findViewById(R.id.botonRojo)
-        botonSuperior.setOnClickListener() {
+        val botonRojo: Button = findViewById(R.id.botonRojo)
+        botonRojo.setOnClickListener() {
             Toast.makeText(applicationContext, "Rojo", Toast.LENGTH_SHORT).show()
         }
 
@@ -111,14 +111,14 @@ class MainActivity : AppCompatActivity() {
                         3 -> funcion3()
                         else -> funcion4()
                     }
-
                     iniciarAleatorio()
-                    println(PatronAResolver[0])
-                    println(PatronAResolver[1])
-                    println(PatronAResolver[2])
-                    println(PatronAResolver[3])
-                    posicionPatron = 0
                 }
+
+                println(PatronAResolver[0])
+                println(PatronAResolver[1])
+                println(PatronAResolver[2])
+                println(PatronAResolver[3])
+                posicionPatron = 0
             }
         }
     }
