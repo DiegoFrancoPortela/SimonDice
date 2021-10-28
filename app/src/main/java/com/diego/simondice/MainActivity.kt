@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         // Guardar el Patrón enviado
         var patronAResolver=Array<String?>(4){null}
 
-
         var posicionPatron = 0
 
         suspend fun suspendTaskColor(color: String, button: Button, colorID: String, Shadow_colorID: String) {
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             delay(500)
         }
 
-        val GenerarPatron = CoroutineScope(Dispatchers.IO).launch {
+        val job = CoroutineScope(Dispatchers.IO).launch {
 
             for (e in 1..4) {
                 val shuffled = (1..4).shuffled().last()
@@ -64,13 +63,6 @@ class MainActivity : AppCompatActivity() {
                 println("Patron a Resolver:")
                 iniciarAleatorio()
             }
-
-            // Comprobar patrón enviado
-            println(patronAResolver[0])
-            println(patronAResolver[1])
-            println(patronAResolver[2])
-            println(patronAResolver[3])
-            // Resetea la posicion Array
             posicionPatron = 0
         }
     }
