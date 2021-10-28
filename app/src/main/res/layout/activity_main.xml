@@ -21,76 +21,51 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="45dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="45dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="365dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="45dp" />
-
     <TextView
         android:id="@+id/textNRondas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="176dp"
         android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonRojo"
-        android:layout_width="157dp"
-        android:layout_height="320dp"
+        android:layout_width="194dp"
+        android:layout_height="366dp"
+        android:layout_marginStart="4dp"
         app:backgroundTint="@color/red"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonVerde"
-        android:layout_width="157dp"
-        android:layout_height="320dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="196dp"
+        android:layout_height="366dp"
+        android:layout_marginStart="11dp"
         app:backgroundTint="@color/green"
         app:layout_constraintStart_toEndOf="@+id/botonRojo"
-        app:layout_constraintTop_toTopOf="@+id/botonRojo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonAzul"
-        android:layout_width="157dp"
-        android:layout_height="320dp"
+        android:layout_width="194dp"
+        android:layout_height="364dp"
+        android:layout_marginStart="4dp"
         app:backgroundTint="@color/blue"
-        app:layout_constraintStart_toStartOf="@+id/botonRojo"
-        app:layout_constraintTop_toBottomOf="@+id/botonVerde" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botonAmarillo"
-        android:layout_width="157dp"
-        android:layout_height="320dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="196dp"
+        android:layout_height="364dp"
+        android:layout_marginStart="11dp"
         android:rotationY="360"
         app:backgroundTint="@color/yellow"
-        app:layout_constraintStart_toEndOf="@+id/botonAzul"
-        app:layout_constraintTop_toBottomOf="@+id/botonVerde" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/botonAzul" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
