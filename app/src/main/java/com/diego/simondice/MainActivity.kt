@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val botonAzul: Button = findViewById(R.id.botonAzul)
         val botonAmarillo: Button = findViewById(R.id.botonAmarillo)
         val botonVerde: Button = findViewById(R.id.botonVerde)
+        val ImageViewNRondas : ImageView = findViewById(R.id.imageViewNRonda)
 
         var numeroRepeticiones = 4
         var cantidadDeClicks = 0
@@ -24,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         // Guardar el Patrón enviado
         var patronAResolver = ArrayList<Int>()
         var patronRespuesta = ArrayList<Int>()
+
+        // Contador de Rondas
+        var nRondas = 1
 
         /*
         fun habilitarBotones() {
@@ -35,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         */
 
         fun empezarJuego() {
+
             botonRojo.isEnabled = true
             botonAzul.isEnabled = true
             botonAmarillo.isEnabled = true
@@ -51,7 +57,42 @@ class MainActivity : AppCompatActivity() {
                 delay(500)
             }
 
+            val job2 = CoroutineScope(Dispatchers.IO).launch {
+                for (e in 1..1) {
+                    if (nRondas == 1) {
+                        ImageViewNRondas.setImageResource(R.drawable.numero1_amarillo)
+                        delay(1000)
+                        ImageViewNRondas.setImageResource(R.drawable.numero1_azul)
+                        delay(1000)
+                        ImageViewNRondas.setImageResource(R.drawable.numero1_rojo)
+                        delay(1000)
+                        ImageViewNRondas.setImageResource(R.drawable.numero1_verde)
+                        delay(1000)
+                    } else if (nRondas == 2) {
+                        ImageViewNRondas.setImageResource(R.drawable.numero2_amarillo)
+                        delay(1000)
+                        ImageViewNRondas.setImageResource(R.drawable.numero2_azul)
+                        delay(1000)
+                        ImageViewNRondas.setImageResource(R.drawable.numero2_rojo)
+                        delay(1000)
+                        ImageViewNRondas.setImageResource(R.drawable.numero2_verde)
+                        delay(1000)
+                    } else if (nRondas == 3) {
+                        ImageViewNRondas.setImageResource(R.drawable.numero3_amarillo)
+                        delay(1000)
+                        ImageViewNRondas.setImageResource(R.drawable.numero3_azul)
+                        delay(1000)
+                        ImageViewNRondas.setImageResource(R.drawable.numero3_rojo)
+                        delay(1000)
+                        ImageViewNRondas.setImageResource(R.drawable.numero3_verde)
+                        delay(1000)
+                    }
+                }
+                nRondas++
+            }
+
             val job = CoroutineScope(Dispatchers.IO).launch {
+                job2.join()
                 for (e in 1..4) {
                     val shuffled = (1..numeroRepeticiones).shuffled().last()
 
