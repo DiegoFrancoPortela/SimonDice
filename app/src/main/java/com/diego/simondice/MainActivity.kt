@@ -106,24 +106,25 @@ class MainActivity : AppCompatActivity() {
             1: Rojo || 2: Verde || 3: Amarillo || 4: Azul
         */
 
-        botonRojo.setOnClickListener {
+        fun onClickListener(colorRespuesta : Int) {
             cantidadDeClicks++
-            crearPatronRespuesta(1)
+            crearPatronRespuesta(colorRespuesta)
+        }
+
+        botonRojo.setOnClickListener {
+            onClickListener(1)
         }
 
         botonVerde.setOnClickListener {
-            cantidadDeClicks++
-            crearPatronRespuesta(2)
+            onClickListener(2)
         }
 
         botonAmarillo.setOnClickListener {
-            cantidadDeClicks++
-            crearPatronRespuesta(3)
+            onClickListener(3)
         }
 
         botonAzul.setOnClickListener {
-            cantidadDeClicks++
-            crearPatronRespuesta(4)
+            onClickListener(4)
         }
 
     }
