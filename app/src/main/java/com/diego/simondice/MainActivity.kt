@@ -19,82 +19,96 @@ class MainActivity : AppCompatActivity() {
         val botonAmarillo: Button = findViewById(R.id.botonAmarillo)
         val botonVerde: Button = findViewById(R.id.botonVerde)
         val ImageViewNRondas : ImageView = findViewById(R.id.imageViewNRonda)
+        val ImageViewRonda : ImageView = findViewById(R.id.imageViewRonda)
 
         var numeroRepeticiones = 4
         var cantidadDeClicks = 0
+
+        // Contador de Rondas
+        var nRondas = 1
 
         // Guardar el Patrón enviado
         var patronAResolver = ArrayList<Int>()
         var patronRespuesta = ArrayList<Int>()
 
-        // Contador de Rondas
-        var nRondas = 1
-
-        /*
         fun habilitarBotones() {
             botonRojo.isEnabled = true
             botonAzul.isEnabled = true
             botonAmarillo.isEnabled = true
             botonVerde.isEnabled = true
         }
-        */
 
         fun empezarJuego() {
 
-            botonRojo.isEnabled = true
-            botonAzul.isEnabled = true
-            botonAmarillo.isEnabled = true
-            botonVerde.isEnabled = true
+            botonRojo.isEnabled = false
+            botonAzul.isEnabled = false
+            botonAmarillo.isEnabled = false
+            botonVerde.isEnabled = false
 
-            var posicionPatron = 0
+            patronAResolver.clear()
+            patronRespuesta.clear()
+
+            val job3 = CoroutineScope(Dispatchers.Main).launch {
+                ImageViewRonda.setVisibility(View.VISIBLE)
+                ImageViewNRondas.setVisibility(View.VISIBLE)
+            }
 
             suspend fun suspendTaskColor(color: Int, button: Button, colorID: String, Shadow_colorID: String) {
                 patronAResolver.add(color)
                 button.setBackgroundColor(Color.parseColor(Shadow_colorID))
                 delay(1000)
                 button.setBackgroundColor(Color.parseColor(colorID))
-                posicionPatron++
                 delay(500)
             }
 
-            val job2 = CoroutineScope(Dispatchers.IO).launch {
+            val job2 = CoroutineScope(Dispatchers.Main).launch {
+                job3.join()
                 for (e in 1..1) {
                     if (nRondas == 1) {
                         ImageViewNRondas.setImageResource(R.drawable.numero1_amarillo)
-                        delay(1000)
+                        delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero1_azul)
-                        delay(1000)
+                        delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero1_rojo)
-                        delay(1000)
+                        delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero1_verde)
-                        delay(1000)
+                        delay(500)
+                        ImageViewRonda.setVisibility(View.GONE)
+                        ImageViewNRondas.setVisibility(View.GONE)
+                        delay(150)
                     } else if (nRondas == 2) {
                         ImageViewNRondas.setImageResource(R.drawable.numero2_amarillo)
-                        delay(1000)
+                        delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero2_azul)
-                        delay(1000)
+                        delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero2_rojo)
-                        delay(1000)
+                        delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero2_verde)
-                        delay(1000)
+                        delay(500)
+                        ImageViewRonda.setVisibility(View.GONE)
+                        ImageViewNRondas.setVisibility(View.GONE)
+                        delay(150)
                     } else if (nRondas == 3) {
                         ImageViewNRondas.setImageResource(R.drawable.numero3_amarillo)
-                        delay(1000)
+                        delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero3_azul)
-                        delay(1000)
+                        delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero3_rojo)
-                        delay(1000)
+                        delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero3_verde)
-                        delay(1000)
+                        delay(500)
+                        ImageViewRonda.setVisibility(View.GONE)
+                        ImageViewNRondas.setVisibility(View.GONE)
+                        delay(150)
                     }
                 }
-                nRondas++
             }
 
-            val job = CoroutineScope(Dispatchers.IO).launch {
+            val job = CoroutineScope(Dispatchers.Main).launch {
+                job3.join()
                 job2.join()
                 for (e in 1..4) {
-                    val shuffled = (1..numeroRepeticiones).shuffled().last()
+                    val shuffled = (1..4).shuffled().last()
 
                     /*
                     1: Rojo || 2: Verde || 3: Amarillo || 4: Azul
@@ -108,9 +122,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     iniciarAleatorio()
                 }
-                //habilitarBotones()
+                habilitarBotones()
                 println("Patron a Resolver:")
-                posicionPatron = 0
             }
 
         }
@@ -122,12 +135,13 @@ class MainActivity : AppCompatActivity() {
             empezarJuego()
         }
 
-        suspend fun comprobarPatron() {
+        fun comprobarPatron() {
             println(patronAResolver)
             println(patronRespuesta)
             if (patronAResolver == patronRespuesta) {
+                nRondas++
                 println("HAS GANADO :D")
-                delay(1000)
+                empezarJuego()
             } else {
                 println("NO HAS GANADO")
             }

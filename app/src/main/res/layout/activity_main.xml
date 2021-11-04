@@ -59,7 +59,7 @@
         app:layout_constraintStart_toEndOf="@+id/botonAzul" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewRonda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -79,7 +79,7 @@
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewRonda"
         app:srcCompat="@drawable/numero1_amarillo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
