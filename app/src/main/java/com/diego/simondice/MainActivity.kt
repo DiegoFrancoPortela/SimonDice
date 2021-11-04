@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
@@ -38,12 +39,21 @@ class MainActivity : AppCompatActivity() {
             botonVerde.isEnabled = true
         }
 
-        fun empezarJuego() {
-
+        fun deshabilitarBotones() {
             botonRojo.isEnabled = false
             botonAzul.isEnabled = false
             botonAmarillo.isEnabled = false
             botonVerde.isEnabled = false
+        }
+
+        fun empezarJuego() {
+
+            botonRojo.setBackgroundColor(Color.parseColor("#ed1d1d"))
+            botonVerde.setBackgroundColor(Color.parseColor("#2caf2f"))
+            botonAzul.setBackgroundColor(Color.parseColor("#137ce7"))
+            botonAmarillo.setBackgroundColor(Color.parseColor("#e5e513"))
+
+            deshabilitarBotones()
 
             patronAResolver.clear()
             patronRespuesta.clear()
@@ -135,7 +145,15 @@ class MainActivity : AppCompatActivity() {
             empezarJuego()
         }
 
-        fun comprobarPatron() {
+        suspend fun hasPerdidoAnimacion(button: Button, colorID: String, Shadow_colorID: String) {
+            delay(50)
+            button.setBackgroundColor(Color.parseColor(Shadow_colorID))
+            delay(300)
+            button.setBackgroundColor(Color.parseColor(colorID))
+            delay(50)
+        }
+
+        suspend fun comprobarPatron() {
             println(patronAResolver)
             println(patronRespuesta)
             if (patronAResolver == patronRespuesta) {
@@ -143,7 +161,26 @@ class MainActivity : AppCompatActivity() {
                 println("HAS GANADO :D")
                 empezarJuego()
             } else {
-                println("NO HAS GANADO")
+                deshabilitarBotones()
+                hasPerdidoAnimacion(botonRojo, "#ed1d1d","#350000")
+                delay(150)
+                hasPerdidoAnimacion(botonVerde, "#2caf2f","#350000")
+                delay(150)
+                hasPerdidoAnimacion(botonAzul, "#137ce7","#350000")
+                delay(150)
+                hasPerdidoAnimacion(botonAmarillo, "#e5e513","#350000")
+                delay(150)
+
+                botonRojo.setBackgroundColor(Color.parseColor("#350000"))
+                botonVerde.setBackgroundColor(Color.parseColor("#350000"))
+                botonAzul.setBackgroundColor(Color.parseColor("#350000"))
+                botonAmarillo.setBackgroundColor(Color.parseColor("#350000"))
+
+                val duration = Toast.LENGTH_SHORT
+                val toast = Toast.makeText(applicationContext, "Has perdido!", duration)
+                toast.show()
+
+                botonJugar.setVisibility(View.VISIBLE)
             }
         }
 
