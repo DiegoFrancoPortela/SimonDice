@@ -1,6 +1,8 @@
 package com.diego.simondice
 
+import android.annotation.SuppressLint
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,17 +12,18 @@ import android.widget.ImageView
 import android.widget.Toast
 import kotlinx.coroutines.*
 
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val botonRojo: Button = findViewById(R.id.botonRojo)
-        val botonAzul: Button = findViewById(R.id.botonAzul)
-        val botonAmarillo: Button = findViewById(R.id.botonAmarillo)
-        val botonVerde: Button = findViewById(R.id.botonVerde)
+        val botonRojo: ImageButton = findViewById(R.id.botonRojo)
+        val botonAzul: ImageButton = findViewById(R.id.botonAzul)
+        val botonAmarillo: ImageButton = findViewById(R.id.botonAmarillo)
+        val botonVerde: ImageButton = findViewById(R.id.botonVerde)
         val ImageViewNRondas : ImageView = findViewById(R.id.imageViewNRonda)
-        val ImageViewRonda : ImageView = findViewById(R.id.imageViewRonda)
+        //val ImageViewRonda : ImageView = findViewById(R.id.imageViewRonda)
 
         var numeroRepeticiones = 4
         var cantidadDeClicks = 0
@@ -48,10 +51,10 @@ class MainActivity : AppCompatActivity() {
 
         fun empezarJuego() {
 
-            botonRojo.setBackgroundColor(Color.parseColor("#ed1d1d"))
-            botonVerde.setBackgroundColor(Color.parseColor("#2caf2f"))
-            botonAzul.setBackgroundColor(Color.parseColor("#137ce7"))
-            botonAmarillo.setBackgroundColor(Color.parseColor("#e5e513"))
+            botonRojo.setImageResource(R.drawable.boton_rojo)
+            botonVerde.setImageResource(R.drawable.boton_verde)
+            botonAzul.setImageResource(R.drawable.boton_azul)
+            botonAmarillo.setImageResource(R.drawable.boton_amarillo)
 
             deshabilitarBotones()
 
@@ -59,16 +62,8 @@ class MainActivity : AppCompatActivity() {
             patronRespuesta.clear()
 
             val job3 = CoroutineScope(Dispatchers.Main).launch {
-                ImageViewRonda.setVisibility(View.VISIBLE)
+                //ImageViewRonda.setVisibility(View.VISIBLE)
                 ImageViewNRondas.setVisibility(View.VISIBLE)
-            }
-
-            suspend fun suspendTaskColor(color: Int, button: Button, colorID: String, Shadow_colorID: String) {
-                patronAResolver.add(color)
-                button.setBackgroundColor(Color.parseColor(Shadow_colorID))
-                delay(1000)
-                button.setBackgroundColor(Color.parseColor(colorID))
-                delay(500)
             }
 
             val job2 = CoroutineScope(Dispatchers.Main).launch {
@@ -83,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                         delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero1_verde)
                         delay(500)
-                        ImageViewRonda.setVisibility(View.GONE)
+                        //ImageViewRonda.setVisibility(View.GONE)
                         ImageViewNRondas.setVisibility(View.GONE)
                         delay(150)
                     } else if (nRondas == 2) {
@@ -95,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                         delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero2_verde)
                         delay(500)
-                        ImageViewRonda.setVisibility(View.GONE)
+                        //ImageViewRonda.setVisibility(View.GONE)
                         ImageViewNRondas.setVisibility(View.GONE)
                         delay(150)
                     } else if (nRondas == 3) {
@@ -107,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                         delay(500)
                         ImageViewNRondas.setImageResource(R.drawable.numero3_verde)
                         delay(500)
-                        ImageViewRonda.setVisibility(View.GONE)
+                        //ImageViewRonda.setVisibility(View.GONE)
                         ImageViewNRondas.setVisibility(View.GONE)
                         delay(150)
                     }
@@ -125,10 +120,34 @@ class MainActivity : AppCompatActivity() {
                     */
 
                     suspend fun iniciarAleatorio() = when (shuffled) {
-                        1 -> suspendTaskColor(1,botonRojo,"#ed1d1d","#8e1111")
-                        2 -> suspendTaskColor(2,botonVerde,"#2caf2f","#1a691c")
-                        3 -> suspendTaskColor(3,botonAmarillo,"#e5e513","#89890b")
-                        else -> suspendTaskColor(4,botonAzul,"#137ce7","#0b4a8a")
+                        1 -> {
+                            patronAResolver.add(1)
+                            botonRojo.setImageResource(R.drawable.boton_rojo_iluminado)
+                            delay(1000)
+                            botonRojo.setImageResource(R.drawable.boton_rojo)
+                            delay(500)
+                        }
+                        2 -> {
+                            patronAResolver.add(2)
+                            botonVerde.setImageResource(R.drawable.boton_verde_iluminado)
+                            delay(1000)
+                            botonVerde.setImageResource(R.drawable.boton_verde)
+                            delay(500)
+                        }
+                        3 -> {
+                            patronAResolver.add(3)
+                            botonAmarillo.setImageResource(R.drawable.boton_amarillo_iluminado)
+                            delay(1000)
+                            botonAmarillo.setImageResource(R.drawable.boton_amarillo)
+                            delay(500)
+                        }
+                        else -> {
+                            patronAResolver.add(4)
+                            botonAzul.setImageResource(R.drawable.boton_azul_iluminado)
+                            delay(1000)
+                            botonAzul.setImageResource(R.drawable.boton_azul)
+                            delay(500)
+                        }
                     }
                     iniciarAleatorio()
                 }
@@ -162,13 +181,13 @@ class MainActivity : AppCompatActivity() {
                 empezarJuego()
             } else {
                 deshabilitarBotones()
-                hasPerdidoAnimacion(botonRojo, "#ed1d1d","#350000")
+                //hasPerdidoAnimacion(botonRojo, "#ed1d1d","#350000")
                 delay(150)
-                hasPerdidoAnimacion(botonVerde, "#2caf2f","#350000")
+                //hasPerdidoAnimacion(botonVerde, "#2caf2f","#350000")
                 delay(150)
-                hasPerdidoAnimacion(botonAzul, "#137ce7","#350000")
+                //hasPerdidoAnimacion(botonAzul, "#137ce7","#350000")
                 delay(150)
-                hasPerdidoAnimacion(botonAmarillo, "#e5e513","#350000")
+                //hasPerdidoAnimacion(botonAmarillo, "#e5e513","#350000")
                 delay(150)
 
                 botonRojo.setBackgroundColor(Color.parseColor("#350000"))
@@ -220,4 +239,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+}
+
+private fun ImageButton.setImageResource(shadowColorid: Drawable) {
+
 }
