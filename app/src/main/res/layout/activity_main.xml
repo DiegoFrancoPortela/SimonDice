@@ -21,17 +21,6 @@
         app:srcCompat="@drawable/letrero_ronda" />
     -->
 
-    <ImageView
-        android:id="@+id/imageViewNRonda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/numero1_amarillo" />
-
     <ImageButton
         android:id="@+id/botonJugar"
         android:layout_width="100dp"
@@ -54,7 +43,8 @@
         android:contextClickable="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/boton_verde" />
+        app:srcCompat="@drawable/boton_verde"
+        android:backgroundTint="@color/transparente" />
 
     <ImageButton
         android:id="@+id/botonAmarillo"
@@ -65,7 +55,8 @@
         app:layout_constraintEnd_toStartOf="@+id/botonAzul"
         app:layout_constraintStart_toStartOf="@+id/botonVerde"
         app:layout_constraintTop_toBottomOf="@+id/botonVerde"
-        app:srcCompat="@drawable/boton_amarillo" />
+        app:srcCompat="@drawable/boton_amarillo_seleccion"
+        android:backgroundTint="@color/transparente" />
 
     <ImageButton
         android:id="@+id/botonRojo"
@@ -74,7 +65,8 @@
         android:layout_marginStart="204dp"
         app:layout_constraintBottom_toTopOf="@+id/botonAzul"
         app:layout_constraintStart_toStartOf="@+id/botonVerde"
-        app:srcCompat="@drawable/boton_rojo" />
+        app:srcCompat="@drawable/boton_rojo"
+        android:backgroundTint="@color/transparente" />
 
     <ImageButton
         android:id="@+id/botonAzul"
@@ -83,7 +75,19 @@
         android:layout_marginStart="4dp"
         app:layout_constraintStart_toEndOf="@+id/botonVerde"
         app:layout_constraintTop_toBottomOf="@+id/botonVerde"
-        app:srcCompat="@drawable/boton_azul" />
+        app:srcCompat="@drawable/boton_azul"
+        android:backgroundTint="@color/transparente" />
+
+    <TextView
+        android:id="@+id/textRondas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="70dp"
+        android:text="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--
 

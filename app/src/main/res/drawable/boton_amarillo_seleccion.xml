@@ -2,11 +2,11 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/boton_amarillo"
+        android:drawable="@drawable/boton_amarillo_iluminado"
         android:state_focused="true"
         android:state_pressed="true"/>
     <item
-        android:drawable="@drawable/boton_amarillo"
+        android:drawable="@drawable/boton_amarillo_iluminado"
         android:state_focused="false"
         android:state_pressed="true"/>
     <item
@@ -14,7 +14,7 @@
         android:state_focused="true"
         android:state_pressed="false"/>
     <item
-        android:drawable="@drawable/boton_amarillo_iluminado"
+        android:drawable="@drawable/boton_amarillo"
         android:state_focused="false"
         android:state_pressed="false"/>
 

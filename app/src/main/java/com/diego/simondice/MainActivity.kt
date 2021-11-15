@@ -1,14 +1,10 @@
 package com.diego.simondice
 
-import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.coroutines.*
 
@@ -22,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         val botonAzul: ImageButton = findViewById(R.id.botonAzul)
         val botonAmarillo: ImageButton = findViewById(R.id.botonAmarillo)
         val botonVerde: ImageButton = findViewById(R.id.botonVerde)
-        val ImageViewNRondas : ImageView = findViewById(R.id.imageViewNRonda)
+        val textRondas: TextView = findViewById(R.id.textRondas)
         //val ImageViewRonda : ImageView = findViewById(R.id.imageViewRonda)
 
         var numeroRepeticiones = 4
@@ -63,48 +59,18 @@ class MainActivity : AppCompatActivity() {
 
             val job3 = CoroutineScope(Dispatchers.Main).launch {
                 //ImageViewRonda.setVisibility(View.VISIBLE)
-                ImageViewNRondas.setVisibility(View.VISIBLE)
+                textRondas.setVisibility(View.VISIBLE)
             }
 
             val job2 = CoroutineScope(Dispatchers.Main).launch {
                 job3.join()
                 for (e in 1..1) {
                     if (nRondas == 1) {
-                        ImageViewNRondas.setImageResource(R.drawable.numero1_amarillo)
-                        delay(500)
-                        ImageViewNRondas.setImageResource(R.drawable.numero1_azul)
-                        delay(500)
-                        ImageViewNRondas.setImageResource(R.drawable.numero1_rojo)
-                        delay(500)
-                        ImageViewNRondas.setImageResource(R.drawable.numero1_verde)
-                        delay(500)
-                        //ImageViewRonda.setVisibility(View.GONE)
-                        ImageViewNRondas.setVisibility(View.GONE)
-                        delay(150)
+                        textRondas.text = "1"
                     } else if (nRondas == 2) {
-                        ImageViewNRondas.setImageResource(R.drawable.numero2_amarillo)
-                        delay(500)
-                        ImageViewNRondas.setImageResource(R.drawable.numero2_azul)
-                        delay(500)
-                        ImageViewNRondas.setImageResource(R.drawable.numero2_rojo)
-                        delay(500)
-                        ImageViewNRondas.setImageResource(R.drawable.numero2_verde)
-                        delay(500)
-                        //ImageViewRonda.setVisibility(View.GONE)
-                        ImageViewNRondas.setVisibility(View.GONE)
-                        delay(150)
+                        textRondas.text = "2"
                     } else if (nRondas == 3) {
-                        ImageViewNRondas.setImageResource(R.drawable.numero3_amarillo)
-                        delay(500)
-                        ImageViewNRondas.setImageResource(R.drawable.numero3_azul)
-                        delay(500)
-                        ImageViewNRondas.setImageResource(R.drawable.numero3_rojo)
-                        delay(500)
-                        ImageViewNRondas.setImageResource(R.drawable.numero3_verde)
-                        delay(500)
-                        //ImageViewRonda.setVisibility(View.GONE)
-                        ImageViewNRondas.setVisibility(View.GONE)
-                        delay(150)
+                        textRondas.text = "3"
                     }
                 }
             }
@@ -164,14 +130,6 @@ class MainActivity : AppCompatActivity() {
             empezarJuego()
         }
 
-        suspend fun hasPerdidoAnimacion(button: Button, colorID: String, Shadow_colorID: String) {
-            delay(50)
-            button.setBackgroundColor(Color.parseColor(Shadow_colorID))
-            delay(300)
-            button.setBackgroundColor(Color.parseColor(colorID))
-            delay(50)
-        }
-
         suspend fun comprobarPatron() {
             println(patronAResolver)
             println(patronRespuesta)
@@ -181,19 +139,11 @@ class MainActivity : AppCompatActivity() {
                 empezarJuego()
             } else {
                 deshabilitarBotones()
-                //hasPerdidoAnimacion(botonRojo, "#ed1d1d","#350000")
-                delay(150)
-                //hasPerdidoAnimacion(botonVerde, "#2caf2f","#350000")
-                delay(150)
-                //hasPerdidoAnimacion(botonAzul, "#137ce7","#350000")
-                delay(150)
-                //hasPerdidoAnimacion(botonAmarillo, "#e5e513","#350000")
-                delay(150)
 
-                botonRojo.setBackgroundColor(Color.parseColor("#350000"))
-                botonVerde.setBackgroundColor(Color.parseColor("#350000"))
-                botonAzul.setBackgroundColor(Color.parseColor("#350000"))
-                botonAmarillo.setBackgroundColor(Color.parseColor("#350000"))
+                botonRojo.setImageResource(R.drawable.boton_rojo)
+                botonVerde.setImageResource(R.drawable.boton_verde)
+                botonAzul.setImageResource(R.drawable.boton_azul)
+                botonAmarillo.setImageResource(R.drawable.boton_amarillo)
 
                 val duration = Toast.LENGTH_SHORT
                 val toast = Toast.makeText(applicationContext, "Has perdido!", duration)
@@ -239,8 +189,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-}
-
-private fun ImageButton.setImageResource(shadowColorid: Drawable) {
-
 }
