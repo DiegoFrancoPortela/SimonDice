@@ -71,15 +71,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/letrero_ronda" />
 
-    <ImageView
-        android:id="@+id/imageViewNRonda"
+    <TextView
+        android:id="@+id/textRondas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:elevation="10dp"
+        android:fontFamily="@font/autour_one"
+        android:text="1"
+        android:textColor="@color/gray"
+        android:textSize="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewRonda"
-        app:srcCompat="@drawable/numero1_amarillo" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewRonda" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
