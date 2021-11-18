@@ -1,13 +1,19 @@
 package com.diego.simondice
 
 import android.graphics.Color
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import kotlinx.coroutines.*
+import android.graphics.drawable.Drawable
+
+
+
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var mediaPlayer: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -61,10 +67,13 @@ class MainActivity : AppCompatActivity() {
                 TextViewRonda.setVisibility(View.VISIBLE)
             }
 
-            suspend fun suspendTaskColor(color: Int, button: Button, colorID: String, Shadow_colorID: String) {
+            suspend fun suspendTaskColor(color: Int, button: Button, colorID: String, Shadow_colorID: String, Sonido: String) {
+                mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier(Sonido, "raw", getPackageName()))
                 patronAResolver.add(color)
+                mediaPlayer.start()
                 button.setBackgroundColor(Color.parseColor(Shadow_colorID))
                 delay(1000)
+                mediaPlayer.stop()
                 button.setBackgroundColor(Color.parseColor(colorID))
                 delay(500)
             }
@@ -91,10 +100,10 @@ class MainActivity : AppCompatActivity() {
                     */
 
                     suspend fun iniciarAleatorio() = when (shuffled) {
-                        1 -> suspendTaskColor(1,botonRojo,"#ed1d1d","#8e1111")
-                        2 -> suspendTaskColor(2,botonVerde,"#2caf2f","#1a691c")
-                        3 -> suspendTaskColor(3,botonAmarillo,"#e5e513","#89890b")
-                        else -> suspendTaskColor(4,botonAzul,"#137ce7","#0b4a8a")
+                        1 -> suspendTaskColor(1,botonRojo,"#ed1d1d","#8e1111","simonsound1")
+                        2 -> suspendTaskColor(2,botonVerde,"#2caf2f","#1a691c","simonsound2")
+                        3 -> suspendTaskColor(3,botonAmarillo,"#e5e513","#89890b","simonsound3")
+                        else -> suspendTaskColor(4,botonAzul,"#137ce7","#0b4a8a","simonsound4")
                     }
                     iniciarAleatorio()
                 }
@@ -168,25 +177,37 @@ class MainActivity : AppCompatActivity() {
             1: Rojo || 2: Verde || 3: Amarillo || 4: Azul
         */
 
-        fun onClickListener(colorRespuesta : Int) {
+        suspend fun onClickListener(colorRespuesta : Int, Sonido : String) {
             cantidadDeClicks++
             crearPatronRespuesta(colorRespuesta)
+            mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier(Sonido, "raw", getPackageName()))
+            mediaPlayer.start()
+            delay(1000)
+            mediaPlayer.stop()
         }
 
         botonRojo.setOnClickListener {
-            onClickListener(1)
+            val job = CoroutineScope(Dispatchers.Main).launch {
+                onClickListener(1, "simonsound1")
+            }
         }
 
         botonVerde.setOnClickListener {
-            onClickListener(2)
+            val job = CoroutineScope(Dispatchers.Main).launch {
+                onClickListener(2, "simonsound2")
+            }
         }
 
         botonAmarillo.setOnClickListener {
-            onClickListener(3)
+            val job = CoroutineScope(Dispatchers.Main).launch {
+                onClickListener(3, "simonsound3")
+            }
         }
 
         botonAzul.setOnClickListener {
-            onClickListener(4)
+            val job = CoroutineScope(Dispatchers.Main).launch {
+                onClickListener(4, "simonsound4")
+            }
         }
 
     }
