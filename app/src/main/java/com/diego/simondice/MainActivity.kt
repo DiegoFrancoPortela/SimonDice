@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                     delay(1500)
                     ImageViewRonda.setVisibility(View.GONE)
                     TextViewRonda.setVisibility(View.GONE)
-                    if (nRondas == 3) {
+                    if (nRondas == 5 || nRondas == 10) {
                         TextViewBonus.setVisibility(View.GONE)
                         TextViewDescBonus.setVisibility(View.GONE)
                     }
@@ -131,7 +131,6 @@ class MainActivity : AppCompatActivity() {
                 TextViewDescBonus.setVisibility(View.VISIBLE)
             }
 
-            /*
             if (nRondas == 10) {
                 println("Ronda Especial: Se añade otro color más :D")
                 descripcionBonus = "MÁS COLORES!"
@@ -140,7 +139,6 @@ class MainActivity : AppCompatActivity() {
                 TextViewBonus.setVisibility(View.VISIBLE)
                 TextViewDescBonus.setVisibility(View.VISIBLE)
             }
-            */
         }
 
         suspend fun comprobarPatron() {
