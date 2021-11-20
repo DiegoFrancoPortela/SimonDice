@@ -19,8 +19,9 @@ class MainActivity : AppCompatActivity() {
         val botonAmarillo: Button = findViewById(R.id.botonAmarillo)
         val botonVerde: Button = findViewById(R.id.botonVerde)
         val TextViewRonda : TextView = findViewById(R.id.textRondas)
+        val TextViewBonus: TextView = findViewById(R.id.textViewBonus)
+        val TextViewDescBonus: TextView = findViewById(R.id.textViewDescBonus)
         val ImageViewRonda : ImageView = findViewById(R.id.imageViewRonda)
-        var numeroRepeticiones = 4
         var cantidadDeClicks = 0
         var cantidadColores = 4
         // Contador de Rondas
@@ -29,12 +30,10 @@ class MainActivity : AppCompatActivity() {
         var patronAResolver = ArrayList<Int>()
         var patronRespuesta = ArrayList<Int>()
 
-        fun rondasEspeciales() {
-            if (nRondas == 3) {
-                println("Ronda Especial: Se añade otro color más :D")
-                numeroRepeticiones++
-            }
-        }
+        var descripcionBonus = ""
+
+        TextViewBonus.setVisibility(View.GONE)
+        TextViewDescBonus.setVisibility(View.GONE)
 
         fun habilitarBotones() {
             botonRojo.isEnabled = true
@@ -60,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                 ImageViewRonda.setVisibility(View.VISIBLE)
                 TextViewRonda.setVisibility(View.VISIBLE)
             }
+
             suspend fun suspendTaskColor(color: Int, button: Button, colorID: String, Shadow_colorID: String, Sonido: String) {
                 mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier(Sonido, "raw", getPackageName()))
                 patronAResolver.add(color)
@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                 button.setBackgroundColor(Color.parseColor(colorID))
                 delay(500)
             }
+
             val job2 = CoroutineScope(Dispatchers.Main).launch {
                 job3.join()
                 for (e in 1..1) {
@@ -77,8 +78,13 @@ class MainActivity : AppCompatActivity() {
                     delay(1500)
                     ImageViewRonda.setVisibility(View.GONE)
                     TextViewRonda.setVisibility(View.GONE)
+                    if (nRondas == 3) {
+                        TextViewBonus.setVisibility(View.GONE)
+                        TextViewDescBonus.setVisibility(View.GONE)
+                    }
                 }
             }
+
             val job = CoroutineScope(Dispatchers.Main).launch {
                 job3.join()
                 job2.join()
@@ -96,9 +102,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     iniciarAleatorio()
                 }
-                habilitarBotones()
-                println("Patron a Resolver:")
                 println(patronAResolver)
+                habilitarBotones()
             }
         }
         val botonJugar: ImageButton = findViewById(R.id.botonJugar)
@@ -116,17 +121,41 @@ class MainActivity : AppCompatActivity() {
             delay(50)
         }
 
+        fun rondasEspeciales() {
+            if (nRondas == 5) {
+                println("Ronda Especial: Se añade otro color más :D")
+                descripcionBonus = "MÁS COLORES!"
+                TextViewRonda.text = descripcionBonus
+                cantidadColores++
+                TextViewBonus.setVisibility(View.VISIBLE)
+                TextViewDescBonus.setVisibility(View.VISIBLE)
+            }
+
+            /*
+            if (nRondas == 10) {
+                println("Ronda Especial: Se añade otro color más :D")
+                descripcionBonus = "MÁS COLORES!"
+                TextViewRonda.text = descripcionBonus
+                cantidadColores++
+                TextViewBonus.setVisibility(View.VISIBLE)
+                TextViewDescBonus.setVisibility(View.VISIBLE)
+            }
+            */
+        }
+
         suspend fun comprobarPatron() {
             println(patronRespuesta)
             if (patronAResolver == patronRespuesta) {
                 nRondas++
-                cantidadColores++
+                TextViewBonus.setVisibility(View.GONE)
+                TextViewDescBonus.setVisibility(View.GONE)
                 rondasEspeciales()
                 empezarJuego()
             } else {
                 deshabilitarBotones()
+                TextViewBonus.setVisibility(View.GONE)
+                TextViewDescBonus.setVisibility(View.GONE)
                 cantidadColores = 4
-                numeroRepeticiones = 4
                 nRondas = 1
                 hasPerdidoAnimacion(botonRojo, "#ed1d1d","#350000","simonsound1")
                 delay(150)
@@ -159,7 +188,7 @@ class MainActivity : AppCompatActivity() {
 
         fun crearPatronRespuesta(colorRespuesta : Int) {
             patronRespuesta.add(colorRespuesta)
-            if (numeroRepeticiones == cantidadDeClicks) {
+            if (cantidadColores == cantidadDeClicks) {
                 val job2 = CoroutineScope(Dispatchers.Main).launch {
                     comprobarPatron()
                 }
