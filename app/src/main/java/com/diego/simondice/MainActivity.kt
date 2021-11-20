@@ -14,6 +14,7 @@ import android.graphics.drawable.Drawable
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var mediaPlayerHasPerdido: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -134,7 +135,10 @@ class MainActivity : AppCompatActivity() {
             if (patronAResolver == patronRespuesta) {
                 nRondas++
                 cantidadColores++
-                numeroRepeticiones++
+                if (nRondas == 3) {
+                    println("Ronda Especial: Se añade otro color más :D")
+                    numeroRepeticiones++
+                }
                 empezarJuego()
             } else {
                 deshabilitarBotones()
@@ -150,10 +154,15 @@ class MainActivity : AppCompatActivity() {
                 hasPerdidoAnimacion(botonAmarillo, "#e5e513","#350000")
                 delay(150)
 
+                mediaPlayerHasPerdido = MediaPlayer.create(this, getResources().getIdentifier("simonsound_wrong", "raw", getPackageName()))
+                mediaPlayerHasPerdido.start()
                 botonRojo.setBackgroundColor(Color.parseColor("#350000"))
                 botonVerde.setBackgroundColor(Color.parseColor("#350000"))
                 botonAzul.setBackgroundColor(Color.parseColor("#350000"))
                 botonAmarillo.setBackgroundColor(Color.parseColor("#350000"))
+
+                delay(2000)
+                mediaPlayerHasPerdido.stop()
 
                 val duration = Toast.LENGTH_SHORT
                 val toast = Toast.makeText(applicationContext, "Has perdido!", duration)
