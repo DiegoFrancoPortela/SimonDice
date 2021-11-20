@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             empezarJuego()
         }
 
-        suspend fun hasPerdidoAnimacion(button: Button, colorID: String, Shadow_colorID: String) {
+        suspend fun hasPerdidoAnimacion(button: Button, colorID: String, Shadow_colorID: String, Sonido: String) {
             delay(50)
             button.setBackgroundColor(Color.parseColor(Shadow_colorID))
             delay(300)
@@ -128,13 +128,13 @@ class MainActivity : AppCompatActivity() {
                 cantidadColores = 4
                 numeroRepeticiones = 4
                 nRondas = 1
-                hasPerdidoAnimacion(botonRojo, "#ed1d1d","#350000")
+                hasPerdidoAnimacion(botonRojo, "#ed1d1d","#350000","simonsound1")
                 delay(150)
-                hasPerdidoAnimacion(botonVerde, "#2caf2f","#350000")
+                hasPerdidoAnimacion(botonVerde, "#2caf2f","#350000","simonsound2")
                 delay(150)
-                hasPerdidoAnimacion(botonAzul, "#137ce7","#350000")
+                hasPerdidoAnimacion(botonAzul, "#137ce7","#350000","simonsound3")
                 delay(150)
-                hasPerdidoAnimacion(botonAmarillo, "#e5e513","#350000")
+                hasPerdidoAnimacion(botonAmarillo, "#e5e513","#350000","simonsound4")
                 delay(150)
 
                 mediaPlayerHasPerdido = MediaPlayer.create(this, getResources().getIdentifier("simonsound_wrong", "raw", getPackageName()))
