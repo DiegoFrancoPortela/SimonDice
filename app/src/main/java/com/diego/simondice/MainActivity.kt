@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import kotlinx.coroutines.*
-import android.graphics.drawable.Drawable
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
