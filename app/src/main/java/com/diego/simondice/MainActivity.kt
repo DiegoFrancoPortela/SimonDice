@@ -1,5 +1,4 @@
 package com.diego.simondice
-
 import android.graphics.Color
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
@@ -9,33 +8,33 @@ import android.widget.*
 import kotlinx.coroutines.*
 import android.graphics.drawable.Drawable
 
-
-
-
 class MainActivity : AppCompatActivity() {
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var mediaPlayerHasPerdido: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val botonRojo: Button = findViewById(R.id.botonRojo)
         val botonAzul: Button = findViewById(R.id.botonAzul)
         val botonAmarillo: Button = findViewById(R.id.botonAmarillo)
         val botonVerde: Button = findViewById(R.id.botonVerde)
         val TextViewRonda : TextView = findViewById(R.id.textRondas)
         val ImageViewRonda : ImageView = findViewById(R.id.imageViewRonda)
-
         var numeroRepeticiones = 4
         var cantidadDeClicks = 0
         var cantidadColores = 4
-
         // Contador de Rondas
         var nRondas = 1
-
         // Guardar el Patrón enviado
         var patronAResolver = ArrayList<Int>()
         var patronRespuesta = ArrayList<Int>()
+
+        fun rondasEspeciales() {
+            if (nRondas == 3) {
+                println("Ronda Especial: Se añade otro color más :D")
+                numeroRepeticiones++
+            }
+        }
 
         fun habilitarBotones() {
             botonRojo.isEnabled = true
@@ -43,31 +42,24 @@ class MainActivity : AppCompatActivity() {
             botonAmarillo.isEnabled = true
             botonVerde.isEnabled = true
         }
-
         fun deshabilitarBotones() {
             botonRojo.isEnabled = false
             botonAzul.isEnabled = false
             botonAmarillo.isEnabled = false
             botonVerde.isEnabled = false
         }
-
         fun empezarJuego() {
-
             botonRojo.setBackgroundColor(Color.parseColor("#ed1d1d"))
             botonVerde.setBackgroundColor(Color.parseColor("#2caf2f"))
             botonAzul.setBackgroundColor(Color.parseColor("#137ce7"))
             botonAmarillo.setBackgroundColor(Color.parseColor("#e5e513"))
-
             deshabilitarBotones()
-
             patronAResolver.clear()
             patronRespuesta.clear()
-
             val job3 = CoroutineScope(Dispatchers.Main).launch {
                 ImageViewRonda.setVisibility(View.VISIBLE)
                 TextViewRonda.setVisibility(View.VISIBLE)
             }
-
             suspend fun suspendTaskColor(color: Int, button: Button, colorID: String, Shadow_colorID: String, Sonido: String) {
                 mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier(Sonido, "raw", getPackageName()))
                 patronAResolver.add(color)
@@ -78,7 +70,6 @@ class MainActivity : AppCompatActivity() {
                 button.setBackgroundColor(Color.parseColor(colorID))
                 delay(500)
             }
-
             val job2 = CoroutineScope(Dispatchers.Main).launch {
                 job3.join()
                 for (e in 1..1) {
@@ -88,18 +79,15 @@ class MainActivity : AppCompatActivity() {
                     TextViewRonda.setVisibility(View.GONE)
                 }
             }
-
             val job = CoroutineScope(Dispatchers.Main).launch {
                 job3.join()
                 job2.join()
                 delay(500)
                 for (e in 1..cantidadColores) {
                     val shuffled = (1..4).shuffled().last()
-
                     /*
                     1: Rojo || 2: Verde || 3: Amarillo || 4: Azul
                     */
-
                     suspend fun iniciarAleatorio() = when (shuffled) {
                         1 -> suspendTaskColor(1,botonRojo,"#ed1d1d","#8e1111","simonsound1")
                         2 -> suspendTaskColor(2,botonVerde,"#2caf2f","#1a691c","simonsound2")
@@ -112,9 +100,7 @@ class MainActivity : AppCompatActivity() {
                 println("Patron a Resolver:")
                 println(patronAResolver)
             }
-
         }
-
         val botonJugar: ImageButton = findViewById(R.id.botonJugar)
         botonJugar.setVisibility(View.VISIBLE)
         botonJugar.setOnClickListener() {
@@ -135,10 +121,7 @@ class MainActivity : AppCompatActivity() {
             if (patronAResolver == patronRespuesta) {
                 nRondas++
                 cantidadColores++
-                if (nRondas == 3) {
-                    println("Ronda Especial: Se añade otro color más :D")
-                    numeroRepeticiones++
-                }
+                rondasEspeciales()
                 empezarJuego()
             } else {
                 deshabilitarBotones()
@@ -193,7 +176,7 @@ class MainActivity : AppCompatActivity() {
             crearPatronRespuesta(colorRespuesta)
             mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier(Sonido, "raw", getPackageName()))
             mediaPlayer.start()
-            delay(1000)
+            delay(500)
             mediaPlayer.stop()
         }
 
