@@ -161,12 +161,14 @@ class MainActivity : AppCompatActivity() {
                 botonAzul.setBackgroundColor(Color.parseColor("#350000"))
                 botonAmarillo.setBackgroundColor(Color.parseColor("#350000"))
 
+                val job = CoroutineScope(Dispatchers.Main).launch {
+                    val duration = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(applicationContext, "Has perdido!", duration)
+                    toast.show()
+                }
+
                 delay(2000)
                 mediaPlayerHasPerdido.stop()
-
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(applicationContext, "Has perdido!", duration)
-                toast.show()
 
                 botonJugar.setVisibility(View.VISIBLE)
             }
