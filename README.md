@@ -1,0 +1,22 @@
+# SimonDice
+
+## Descripción
+
+SimonDice es una pequeña aplicación que imita ligeramente el concepto del juego Simon Dice, pero con algunas modificaciones propias.
+Esta app está desarrollada en Kotlin con Android Studio.
+
+## Contenido
+
+Esta App implementa diversas Corrutinas para su correcto funcionamiento, además de múltiples métodos, por ejemplo, para reproducir sonido, cambiar colores,etc...
+
+![Imagen Corrutina](https://lh3.googleusercontent.com/fife/AAWUweWFepltAOZzvMmTpBng92GWWNC3xKJbzhTtDGS-krLeS8NYJvH1c8Ak-MqhO5MdrtrUNSCfNqyH1eJdkpA4jusI-W6eXlh67Qf4D1lOuUkTLdB6dft99TUbi7HPtBv3iyfbK4qEWYhLTPEfQZgeqpiqQ_CrASDmPkD4LlH7URceMQexiQDLpK9Y4BK5N-o7Z_wbAEf5R_H9WD3wqFgygr_8FVbkDLe7YwqSvE02tw1VmgXp95RXm2dT0Lk6N3WZYmiEmXhBXIEny0l-_8JiUerABPUyA2YSh4J73ni53RUZAV6MSAQ7k5lGOnzR5VmzKPzZoTe2epri5q2VKFaxFMMjk8D52_ur2ZnjiBiFCiKnbnwpUcpRE5n11Uvdel5zc8RPJmfiwzpkmYg-sYiuty6mUZ4yTqBbRJOYiTOXijpMVloPbsJPoNM4CRuBs4G2vDEMywR0Oyg5KbIS11uHCXGyfU_9MzXCgRVOnEc2AmUChQfQnAFXOUiwEpoDjaKU6lj6EbveI7zDp1LA2HRZQfjlX7l40GjKW5OpiIIEweShV0XaCJwLWaHWRvEyxColz76arLyQgWmdEi7QYlbQ6X-bkeWTcA-dMHnB-c09HIgmvlvC9WXFYb2h5xyfR-f7YddnlbAzlUVX7aGeJiTyDo3JpLd_tiTHKIgD3_ked43YbifmnChvJizILjYCFrK3LZCJMGSSsJJCXmrfoGXDxBa3V9mUYZ79On4=w1848-h637-ft)
+
+## Esquema
+
+
+
+## Diseño
+
+
+
+## Imagenes
